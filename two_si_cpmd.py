@@ -42,18 +42,8 @@ dft.find(tol, tol, tol, 1000, False)
 x0 = sirius.atom_positions(ctx.unit_cell())
 v0 = np.zeros_like(x0)
 
-input_vars = {
-    "Methods": [{"type": "plain"}, {"type": "kolafa", "order": 3}],
-    "parameters": {
-        "method": {"type": "plain"},
-        "solver": "ot",
-        "maxiter": 300,
-        "density_tol": 0.0001,
-        "energy_tol": 1e-10,
-        "dt": 5,
-        "N": 2000,
-    },
-}
+input_vars = {'parameters': {'dt': 10, 'N': 1000, 'me': 300, 'T': 0}}
+
 for step_data in cpmd_verlet.cpmd_verlet_raw(input_vars, kset):
-    continue
+    print(step_data)
 print('end')
