@@ -9,8 +9,8 @@ import numpy as np
 # ## Setup the unit cell
 # In[3]:
 lat = 10.26 * np.eye(3)
-gk_cutoff = 3
-pw_cutoff = 6
+gk_cutoff = 6
+pw_cutoff = 12
 inp = {
     "parameters": {
         "xc_functionals": ["XC_LDA_X", "XC_LDA_C_PZ"],
@@ -36,6 +36,7 @@ ctx.initialize()
 kset = sirius.K_point_set(ctx, [1, 1, 1], [0, 0, 0], True)
 
 dft = sirius.DFT_ground_state(kset)
+dft.initial_state()
 tol = 1e-9
 dft.find(tol, tol, tol, 1000, False)
 
